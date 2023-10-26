@@ -83,8 +83,15 @@ function onReceivedActivityMessageViaJavascriptInterface(json){
                     fullRoadAddr += extraRoadAddr;
                 }              
               
-                window.webkit.messageHandlers.addressSelected.postMessage(data.zonecode + ", " + fullRoadAddr);
-                window.Android.processDATA(data.zonecode + ", " + fullRoadAddr);
+                if (typeof window.Android !== "undefined") {
+                     // 안드로이드 처리
+                     window.Android.processDATA(data.zonecode + ", " + fullRoadAddr);
+                 } else if (typeof window.webkit !== "undefined" && 
+                            typeof window.webkit.messageHandlers !== "undefined" && 
+                            typeof window.webkit.messageHandlers.addressSelected !== "undefined") {
+                     // iOS 처리
+                     window.webkit.messageHandlers.addressSelected.postMessage(data.zonecode + ", " + fullRoadAddr);
+                 }
             },
             width : '100%',
             height : '100%'
