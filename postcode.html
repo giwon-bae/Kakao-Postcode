@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>우편번호 서비스</title>
+    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+    <script>
+        window.onload = function() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    window.webkit.messageHandlers.addressSelected.postMessage(data);
+                }
+            }).open();
+        };
+    </script>
+</head>
+<body></body>
+</html>
