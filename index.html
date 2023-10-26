@@ -11,13 +11,6 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-window.onload = function() {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    window.webkit.messageHandlers.addressSelected.postMessage(data);
-                }
-            }).open();
-        };
 
 window.addEventListener("message", onReceivedPostMessage, false);
 
@@ -87,7 +80,10 @@ function onReceivedActivityMessageViaJavascriptInterface(json){
                 if(fullRoadAddr !== ''){
                     fullRoadAddr += extraRoadAddr;
                 }              
-              
+
+                        console.log("This is a debug message");
+
+                        
                 if (typeof window.Android !== "undefined") {
                      // 안드로이드 처리
                      window.Android.processDATA(data.zonecode + ", " + fullRoadAddr);
@@ -95,6 +91,7 @@ function onReceivedActivityMessageViaJavascriptInterface(json){
                             typeof window.webkit.messageHandlers !== "undefined" && 
                             typeof window.webkit.messageHandlers.addressSelected !== "undefined") {
                      // iOS 처리
+                        console.log(data.zonecode + ", " + fullRoadAddr);
                      window.webkit.messageHandlers.addressSelected.postMessage(data.zonecode + ", " + fullRoadAddr);
                  }
             },
