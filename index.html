@@ -90,7 +90,7 @@ function onReceivedActivityMessageViaJavascriptInterface(json){
                             typeof window.webkit.messageHandlers !== "undefined" && 
                             typeof window.webkit.messageHandlers.addressSelected !== "undefined") {
                 // iOS 처리
-                     window.webkit.messageHandlers.addressSelected.postMessage(data.zonecode + ", " + fullRoadAddr);
+                     window.webkit.messageHandlers.callBackHandler.postMessage(data.zonecode + ", " + fullRoadAddr);
                  }
             },
             width : '100%',
