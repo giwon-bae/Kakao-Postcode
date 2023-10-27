@@ -88,7 +88,7 @@ function onReceivedActivityMessageViaJavascriptInterface(json){
                      window.Android.processDATA(data.zonecode + ", " + fullRoadAddr);
                  } else if (typeof window.webkit !== "undefined" && 
                             typeof window.webkit.messageHandlers !== "undefined" && 
-                            typeof window.webkit.messageHandlers.addressSelected !== "undefined") {
+                            typeof window.webkit.messageHandlers.callBackHandler !== "undefined") {
                 // iOS 처리
                      window.webkit.messageHandlers.callBackHandler.postMessage(data.zonecode + ", " + fullRoadAddr);
                  }
